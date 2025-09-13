@@ -1,6 +1,6 @@
-package pe.edu.upc.easyshop
+package pe.edu.upc.easyshop.features.home.presentation
 
-import android.graphics.drawable.Icon
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -24,7 +24,7 @@ import androidx.compose.material.icons.filled.Search
 import androidx.compose.material.icons.outlined.FilterList
 import androidx.compose.material.icons.outlined.Notifications
 import androidx.compose.material.icons.outlined.ShoppingCart
-import androidx.compose.material3.Card
+import androidx.compose.material3.ElevatedButton
 import androidx.compose.material3.FilterChip
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
@@ -37,13 +37,20 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.graphics.vector.ImageVector
-import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import pe.edu.upc.easyshop.ui.theme.AppTheme
+import pe.edu.upc.easyshop.R
+import pe.edu.upc.easyshop.core.ui.components.ProductCard
+import pe.edu.upc.easyshop.core.ui.components.RoundedIcon
+import pe.edu.upc.easyshop.shared.models.Product
+import pe.edu.upc.easyshop.core.ui.theme.AppTheme
+import pe.edu.upc.easyshop.shared.models.products
 
 @Composable
 fun Home() {
@@ -61,12 +68,6 @@ fun Home() {
         Category.Women,
         Category.Boys,
         Category.Girls
-    )
-
-    val products = listOf(
-        Product(name = "Cotton T-Shirt", image = "", price = 69.0),
-        Product(name = "Cotton T-Shirt", image = "", price = 69.0),
-        Product(name = "Cotton T-Shirt", image = "", price = 69.0)
     )
 
     Column(modifier = Modifier.fillMaxSize()) {
@@ -140,7 +141,7 @@ fun Home() {
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
-                "Categories",
+                stringResource(R.string.label_categories),
                 style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.SemiBold
             )
@@ -166,11 +167,47 @@ fun Home() {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(128.dp)
+                .height(192.dp)
+                .padding(8.dp)
                 .clip(RoundedCornerShape(16.dp))
-                .background(MaterialTheme.colorScheme.inverseOnSurface)
+                .background(
+                    Brush.linearGradient(
+                        colors =
+                            listOf(
+                                MaterialTheme.colorScheme.primary,
+                                MaterialTheme.colorScheme.inverseOnSurface
+                            )
+                    )
+                )
         ) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Column(
+                    modifier = Modifier
+                        .weight(1f)
+                        .padding(16.dp)
+                ) {
+                    Text(
+                        "Get your special sale up to 40%",
+                        style = MaterialTheme.typography.headlineSmall,
+                        color = MaterialTheme.colorScheme.onPrimary,
+                        fontWeight = FontWeight.SemiBold
+                        )
+                    ElevatedButton(onClick = {}) {
+                        Text("Shop now")
+                    }
+                }
 
+                Image(
+                    painterResource(R.drawable.banner),
+                    contentDescription = null,
+                    modifier = Modifier.weight(1f),
+                    contentScale = ContentScale.FillWidth
+                )
+
+            }
         }
 
         Row(
@@ -194,54 +231,9 @@ fun Home() {
             columns = GridCells.Fixed(2)
         ) {
             items(products) { product ->
-                ProductItem(product)
+                ProductCard(product)
             }
         }
-    }
-}
-
-@Composable
-fun ProductItem(product: Product) {
-    Card (modifier = Modifier.padding(8.dp)){
-        Box(
-            modifier = Modifier
-                .fillMaxWidth()
-                .height(256.dp)
-                .clip(RoundedCornerShape(16.dp))
-                .background(MaterialTheme.colorScheme.inverseOnSurface)
-                .padding(8.dp)
-        ) {
-            Column {
-                Text(
-                    product.name,
-                    style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.SemiBold
-                )
-                Text(
-                    "$ ${product.price}",
-                    style = MaterialTheme.typography.titleMedium,
-                    fontWeight = FontWeight.SemiBold
-                )
-            }
-        }
-    }
-}
-
-@Composable
-fun RoundedIcon(icon: ImageVector) {
-
-    Box(
-        modifier = Modifier
-            .size(48.dp)
-            .clip(RoundedCornerShape(8.dp))
-            .background(MaterialTheme.colorScheme.inverseOnSurface),
-        contentAlignment = Alignment.Center
-    ) {
-        Icon(
-            icon,
-            contentDescription = null,
-            tint = MaterialTheme.colorScheme.onSurfaceVariant
-        )
     }
 }
 
