@@ -48,7 +48,6 @@ import androidx.compose.ui.unit.dp
 import pe.edu.upc.easyshop.R
 import pe.edu.upc.easyshop.core.ui.components.ProductCard
 import pe.edu.upc.easyshop.core.ui.components.RoundedIcon
-import pe.edu.upc.easyshop.shared.models.Product
 import pe.edu.upc.easyshop.core.ui.theme.AppTheme
 import pe.edu.upc.easyshop.shared.models.products
 
@@ -125,7 +124,7 @@ fun Home() {
                     )
                 },
                 placeholder = {
-                    Text("Search")
+                    Text(stringResource(R.string.placeholder_search))
                 },
                 modifier = Modifier.weight(1f)
             )
@@ -146,7 +145,7 @@ fun Home() {
                 fontWeight = FontWeight.SemiBold
             )
             TextButton(onClick = {}) {
-                Text("See all")
+                Text(stringResource(R.string.button_see_all))
             }
         }
 
@@ -218,12 +217,12 @@ fun Home() {
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
             Text(
-                "Popular",
+                stringResource(R.string.label_popular),
                 style = MaterialTheme.typography.titleMedium,
                 fontWeight = FontWeight.SemiBold
             )
             TextButton(onClick = {}) {
-                Text("See all")
+                Text(stringResource(R.string.button_see_all))
             }
         }
 
