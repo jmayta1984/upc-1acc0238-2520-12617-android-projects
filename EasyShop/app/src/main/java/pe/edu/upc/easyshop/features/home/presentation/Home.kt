@@ -52,7 +52,9 @@ import pe.edu.upc.easyshop.core.ui.theme.AppTheme
 import pe.edu.upc.easyshop.shared.models.products
 
 @Composable
-fun Home() {
+fun Home(
+    onClick: () -> Unit
+) {
     val search = remember {
         mutableStateOf("")
     }
@@ -230,7 +232,7 @@ fun Home() {
             columns = GridCells.Fixed(2)
         ) {
             items(products) { product ->
-                ProductCard(product)
+                ProductCard(product, onClick)
             }
         }
     }
@@ -249,6 +251,6 @@ sealed class Category(val label: String) {
 fun HomePreview() {
     AppTheme(dynamicColor = false)
     {
-        Home()
+        Home{}
     }
 }
