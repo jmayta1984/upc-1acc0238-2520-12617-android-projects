@@ -32,7 +32,6 @@ import coil3.compose.AsyncImage
 import pe.edu.upc.easyshop.core.ui.components.RoundedIcon
 import pe.edu.upc.easyshop.core.ui.theme.AppTheme
 import pe.edu.upc.easyshop.shared.models.Product
-import pe.edu.upc.easyshop.shared.models.products
 
 @Composable
 fun ProductDetail(product: Product) {
@@ -114,12 +113,4 @@ fun ProductDetail(product: Product) {
         }
     }
 
-}
-
-@Preview(showBackground = true)
-@Composable
-fun ProductDetailPreview() {
-    AppTheme {
-        ProductDetail(products[0])
-    }
 }

@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.tooling.preview.Preview
 import pe.edu.upc.easyshop.core.ui.theme.AppTheme
+import pe.edu.upc.easyshop.features.home.presentation.di.PresentationModule.getHomeViewModel
 import pe.edu.upc.easyshop.features.home.presentation.home.Home
 
 @Composable
@@ -38,26 +39,28 @@ fun Main(onClick: () -> Unit) {
         bottomBar = {
             BottomAppBar {
 
-               bottomNavigationItems.forEach { item ->
-                   NavigationBarItem(
-                       selected = item == selectedItem.value,
-                       onClick = {
-                            selectedItem.value  = item
-                       },
-                       icon = {
-                           Icon(item.icon,
-                               contentDescription = item.label)
-                       },
-                       label = {
-                           Text(item.label)
-                       }
-                   )
-               }
+                bottomNavigationItems.forEach { item ->
+                    NavigationBarItem(
+                        selected = item == selectedItem.value,
+                        onClick = {
+                            selectedItem.value = item
+                        },
+                        icon = {
+                            Icon(
+                                item.icon,
+                                contentDescription = item.label
+                            )
+                        },
+                        label = {
+                            Text(item.label)
+                        }
+                    )
+                }
             }
         }
     ) {
         Column(modifier = Modifier.padding(it)) {
-            Home (onClick)
+            Home(getHomeViewModel(), onClick)
         }
     }
 }
@@ -68,14 +71,14 @@ sealed class BottomNavigationItem(
 ) {
     object Home : BottomNavigationItem(Icons.Default.Home, "Home")
     object Favorite : BottomNavigationItem(Icons.Default.Favorite, "Favorite")
-    object Cart: BottomNavigationItem(Icons.Default.ShoppingCart, "Cart")
-    object Profile: BottomNavigationItem(Icons.Default.Person, "Profile")
+    object Cart : BottomNavigationItem(Icons.Default.ShoppingCart, "Cart")
+    object Profile : BottomNavigationItem(Icons.Default.Person, "Profile")
 }
 
 @Preview
 @Composable
 fun MainPreview() {
     AppTheme {
-        Main{}
+        Main {}
     }
 }
