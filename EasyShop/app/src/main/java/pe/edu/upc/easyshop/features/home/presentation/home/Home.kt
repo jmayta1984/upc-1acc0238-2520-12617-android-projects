@@ -56,7 +56,7 @@ import pe.edu.upc.easyshop.features.home.presentation.di.PresentationModule.getH
 @Composable
 fun Home(
     viewModel: HomeViewModel,
-    onClick: () -> Unit
+    onClick: (Int) -> Unit
 ) {
     val search = remember {
         mutableStateOf("")
@@ -238,7 +238,9 @@ fun Home(
             columns = GridCells.Fixed(2)
         ) {
             items(products) { product ->
-                ProductCard(product, onClick)
+                ProductCard(product) {
+                    onClick(product.id)
+                }
             }
         }
     }
