@@ -10,8 +10,8 @@ import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import pe.edu.upc.easyshop.core.root.Main
 import pe.edu.upc.easyshop.core.ui.theme.AppTheme
-import pe.edu.upc.easyshop.features.auth.presentation.di.PresentationModule.getLoginViewModel
 import pe.edu.upc.easyshop.features.auth.presentation.login.Login
+import pe.edu.upc.easyshop.features.auth.presentation.login.LoginViewModel
 import pe.edu.upc.easyshop.features.home.presentation.productdetail.ProductDetail
 import pe.edu.upc.easyshop.features.home.presentation.productdetail.ProductDetailViewModel
 
@@ -19,8 +19,7 @@ import pe.edu.upc.easyshop.features.home.presentation.productdetail.ProductDetai
 fun AppNavigation(){
     val navController = rememberNavController()
 
-    val loginViewModel = getLoginViewModel()
-
+    val loginViewModel: LoginViewModel = hiltViewModel()
 
     NavHost(navController, startDestination = Route.Login.route) {
 
