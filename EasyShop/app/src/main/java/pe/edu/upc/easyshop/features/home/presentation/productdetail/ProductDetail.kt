@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.Remove
 import androidx.compose.material3.Button
@@ -86,7 +87,11 @@ fun ProductDetail(viewModel: ProductDetailViewModel) {
                         modifier = Modifier.padding(8.dp)
                     ) {
                         Icon(
-                            Icons.Default.FavoriteBorder,
+                            if (product.isFavorite) {
+                                Icons.Default.Favorite
+                            } else {
+                                Icons.Default.FavoriteBorder
+                            },
                             contentDescription = null,
                             modifier = Modifier
                                 .background(MaterialTheme.colorScheme.background)
@@ -96,7 +101,8 @@ fun ProductDetail(viewModel: ProductDetailViewModel) {
                 }
                 Row(
                     modifier = Modifier
-                        .fillMaxWidth().padding(8.dp),
+                        .fillMaxWidth()
+                        .padding(8.dp),
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
                     Text(product.name, style = MaterialTheme.typography.titleMedium)
@@ -106,7 +112,7 @@ fun ProductDetail(viewModel: ProductDetailViewModel) {
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding( 8.dp),
+                        .padding(8.dp),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.End
                 ) {
@@ -117,7 +123,6 @@ fun ProductDetail(viewModel: ProductDetailViewModel) {
             }
         }
     }
-
 
 
 }

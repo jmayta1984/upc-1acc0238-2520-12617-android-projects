@@ -8,4 +8,7 @@ interface ProductRepository {
     suspend fun getProductId(id: Int): Product?
 
     suspend fun insert(product: Product)
+
+    suspend fun delete(product: Product)
+
 }

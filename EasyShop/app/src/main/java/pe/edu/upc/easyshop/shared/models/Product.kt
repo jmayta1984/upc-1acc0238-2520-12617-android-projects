@@ -4,5 +4,6 @@ data class Product(
     val id: Int,
     val name: String,
     val image: String,
-    val price: Double
+    val price: Double,
+    var isFavorite: Boolean = false
 )

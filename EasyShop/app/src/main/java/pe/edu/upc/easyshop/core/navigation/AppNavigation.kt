@@ -1,5 +1,6 @@
 package pe.edu.upc.easyshop.core.navigation
 
+import android.util.Log
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavType
@@ -19,7 +20,6 @@ fun AppNavigation(){
     val navController = rememberNavController()
 
     val loginViewModel = getLoginViewModel()
-    val productDetailViewModel = getProductDetailViewModel()
 
 
     NavHost(navController, startDestination = Route.Login.route) {
@@ -31,6 +31,7 @@ fun AppNavigation(){
         }
 
         composable (Route.Main.route){
+            Log.d("AppNavigation", "Main")
             Main { productId ->
                 navController.navigate("${Route.ProductDetail.route}/$productId")
             }
@@ -44,7 +45,10 @@ fun AppNavigation(){
         ){ backStackEntry ->
 
             backStackEntry.arguments?.let { arguments ->
+
                 val productId = arguments.getInt(Route.ProductDetail.argument)
+                Log.d("AppNavigation", productId.toString())
+                val productDetailViewModel = getProductDetailViewModel()
                 productDetailViewModel.getProductById(productId)
                 ProductDetail(productDetailViewModel)
             }

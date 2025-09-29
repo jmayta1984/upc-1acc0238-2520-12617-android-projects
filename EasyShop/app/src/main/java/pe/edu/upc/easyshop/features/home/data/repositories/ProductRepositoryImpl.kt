@@ -24,11 +24,10 @@ class ProductRepositoryImpl(
                             id = productDto.id ?: 0,
                             name = productDto.title ?: "",
                             price = productDto.price ?: 0.0,
-                            image = productDto.thumbnail ?: ""
+                            image = productDto.thumbnail ?: "",
+                            isFavorite = dao.fetchProductById(productDto.id ?: 0).isNotEmpty()
                         )
-
                     }
-
                 }
             }
         }
@@ -44,7 +43,8 @@ class ProductRepositoryImpl(
                     id = productDto.id ?: 0,
                     name = productDto.title ?: "",
                     price = productDto.price ?: 0.0,
-                    image = productDto.thumbnail ?: ""
+                    image = productDto.thumbnail ?: "",
+                    isFavorite = dao.fetchProductById(productDto.id ?: 0).isNotEmpty()
                 )
             }
         }
@@ -54,6 +54,19 @@ class ProductRepositoryImpl(
 
     override suspend fun insert(product: Product) = withContext(Dispatchers.IO) {
         dao.insert(
+            ProductEntity(
+                id = product.id,
+                name = product.name,
+                price = product.price,
+                image = product.image
+            )
+        )
+    }
+
+    override suspend fun delete(product: Product) = withContext(
+        Dispatchers.IO
+    ) {
+        dao.delete(
             ProductEntity(
                 id = product.id,
                 name = product.name,
