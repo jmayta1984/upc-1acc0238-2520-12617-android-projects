@@ -4,7 +4,6 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import pe.edu.upc.easyshop.features.home.data.di.DataModule.getRetrofit
 import pe.edu.upc.easyshop.features.home.data.remote.services.ProductService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory

@@ -6,7 +6,6 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import pe.edu.upc.easyshop.MyApplication
 import pe.edu.upc.easyshop.features.home.data.local.dao.ProductDao
 import pe.edu.upc.easyshop.features.home.data.local.database.AppDatabase
 import javax.inject.Singleton
