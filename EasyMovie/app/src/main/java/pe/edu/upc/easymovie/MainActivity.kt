@@ -4,13 +4,9 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.ui.Modifier
 import dagger.hilt.android.AndroidEntryPoint
 import pe.edu.upc.easymovie.core.ui.theme.EasyMovieTheme
-import pe.edu.upc.easymovie.features.favorites.presentation.FavoritesView
-import pe.edu.upc.easymovie.features.movies.presentation.MoviesView
+import pe.edu.upc.easymovie.features.main.MainView
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -19,9 +15,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             EasyMovieTheme {
-                Scaffold { innerPadding ->
-                    FavoritesView(modifier = Modifier.padding(innerPadding))
-                }
+                MainView()
             }
         }
     }
