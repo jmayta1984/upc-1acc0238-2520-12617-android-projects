@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
@@ -45,9 +46,11 @@ fun MovieCard(
                     .clip(RoundedCornerShape(8.dp)),
                 contentScale = ContentScale.FillHeight
             )
-            Column(modifier = Modifier
-                .weight(1f)
-                .padding(horizontal = 8.dp)) {
+            Column(
+                modifier = Modifier
+                    .weight(1f)
+                    .padding(horizontal = 8.dp)
+            ) {
                 Text(
                     movie.title, maxLines = 1,
                     fontWeight = FontWeight.SemiBold
@@ -58,7 +61,11 @@ fun MovieCard(
                 onClick = onToggleFavorite
             ) {
                 Icon(
-                    Icons.Default.FavoriteBorder,
+                    if (movie.isFavorite) {
+                        Icons.Default.Favorite
+                    } else {
+                        Icons.Default.FavoriteBorder
+                    },
                     contentDescription = null
                 )
             }

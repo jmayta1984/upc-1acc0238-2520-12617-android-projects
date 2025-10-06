@@ -22,7 +22,9 @@ fun MoviesView(
     Column (modifier.fillMaxSize()){
         LazyColumn {
             items(movies) { movie ->
-                MovieCard(movie, onClick = {}){}
+                MovieCard(movie, onClick = {}){
+                    viewModel.toggleFavorite(movie)
+                }
             }
         }
     }
