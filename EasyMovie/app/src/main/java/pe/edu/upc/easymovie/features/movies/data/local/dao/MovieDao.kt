@@ -18,4 +18,6 @@ interface MovieDao {
     @Query("select * from movies where id=:id")
     suspend fun fetchById(id: Int): List<MovieEntity>
 
+    @Query("select * from movies")
+    suspend fun fetchAll(): List<MovieEntity>
 }

@@ -39,21 +39,37 @@ class MovieRepositoryImpl @Inject constructor(
         return@withContext emptyList()
     }
 
-    override suspend fun insertFavorite(movie: Movie) = withContext(Dispatchers.IO){
-        dao.insert(MovieEntity(
-            id = movie.id,
-            title =  movie.title,
-            posterPath = movie.posterPath,
-            overview = movie.overview
-        ))
+    override suspend fun insertFavorite(movie: Movie) = withContext(Dispatchers.IO) {
+        dao.insert(
+            MovieEntity(
+                id = movie.id,
+                title = movie.title,
+                posterPath = movie.posterPath,
+                overview = movie.overview
+            )
+        )
     }
 
     override suspend fun deleteFavorite(movie: Movie) = withContext(Dispatchers.IO) {
-        dao.delete(MovieEntity(
-            id = movie.id,
-            title =  movie.title,
-            posterPath = movie.posterPath,
-            overview = movie.overview
-        ))
+        dao.delete(
+            MovieEntity(
+                id = movie.id,
+                title = movie.title,
+                posterPath = movie.posterPath,
+                overview = movie.overview
+            )
+        )
+    }
+
+    override suspend fun getAllFavorites(): List<Movie> = withContext(Dispatchers.IO) {
+        return@withContext dao.fetchAll().map { movieEntity ->
+            Movie(
+                id = movieEntity.id,
+                title = movieEntity.title,
+                posterPath = movieEntity.posterPath,
+                overview = movieEntity.overview,
+                isFavorite = true
+            )
+        }
     }
 }
