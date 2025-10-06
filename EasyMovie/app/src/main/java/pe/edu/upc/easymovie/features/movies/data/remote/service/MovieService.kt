@@ -1,6 +1,6 @@
-package pe.edu.upc.easymovie.features.movies.data
+package pe.edu.upc.easymovie.features.movies.data.remote.service
 
-import pe.edu.upc.easymovie.features.movies.data.models.MoviesWrapperDto
+import pe.edu.upc.easymovie.features.movies.data.remote.models.MoviesWrapperDto
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path

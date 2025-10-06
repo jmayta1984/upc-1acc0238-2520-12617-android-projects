@@ -1,7 +1,8 @@
-package pe.edu.upc.easymovie.features.movies.data
+package pe.edu.upc.easymovie.features.movies.data.repositories
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import pe.edu.upc.easymovie.features.movies.data.remote.service.MovieService
 import pe.edu.upc.easymovie.features.movies.domain.Movie
 import pe.edu.upc.easymovie.features.movies.domain.MovieRepository
 import javax.inject.Inject
